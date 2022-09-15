@@ -11,6 +11,7 @@ import { MatchHeightModule } from "../shared/directives/match-height.directive";
 import { Dashboard1Component } from "./dashboard1/dashboard1.component";
 import { Dashboard2Component } from "./dashboard2/dashboard2.component";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         NgbModule,
         MatchHeightModule,
         NgApexchartsModule,
-        AngularResizedEventModule
+        AngularResizedEventModule,
+        ChartsModule,
     ],
     exports: [],
     declarations: [
