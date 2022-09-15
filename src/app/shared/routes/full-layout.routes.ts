@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { DashboardComponent } from 'app/dashboard/dashboard/dashboard.component';
 
 //Route for content layout with sidebar, navbar and footer.
 
@@ -6,6 +7,13 @@ export const Full_ROUTES: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('../../dashboard/dashboard.module').then(m => m.DashboardModule)
+  }, 
+  {
+    path: 'home',
+    component: DashboardComponent,
+    data: {
+      title: 'Home'
+    }
   },
   {
     path: 'calendar',
