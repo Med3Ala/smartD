@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h4 class="modal-title">Hi there!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+    
+          <div class="row">
+            <div class="col-md-6">
+              <fieldset class="form-group">
+                <label for="basicInput">Basic</label>
+                <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+              </fieldset>
+
+              <fieldset class="form-group">
+                <label for="helpInputTop">Input text with help</label>
+                <small class="text-muted">eg.<i>someone@example.com</i></small>
+                <input type="text" class="form-control" id="helpInputTop">
+              </fieldset>
+
+              <fieldset class="form-group">
+                <label for="helperText">With Helper Text</label>
+                <input type="text" id="helperText" class="form-control" placeholder="Name">
+                <small class="text-muted">Find helper text here for given textbox.</small>
+              </fieldset>
+            </div>
+            <div class="col-md-6">
+              <fieldset class="form-group">
+                <label for="disabledInput">Disabled Input</label>
+                <input type="text" class="form-control" id="disabledInput" placeholder="Disabled Text" disabled>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="readonlyInput">Readonly Input</label>
+                <input type="text" class="form-control" id="readonlyInput" readonly="readonly"
+                  value="You can't update me :P">
+              </fieldset>
+
+              <fieldset class="form-group">
+                <label>Static Text</label>
+                <p class="form-control-static" id="staticInput">email@pixinvent.com</p>
+              </fieldset>
+            </div>
+          </div>
+      
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+  </div>
+
+
