@@ -5,6 +5,8 @@ import { adminRoutingModule } from './admin-routing.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PipeModule } from 'app/shared/pipes/pipe.module';
 import { AdduserComponent } from './modals/adduser/adduser.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -14,7 +16,9 @@ import { AdduserComponent } from './modals/adduser/adduser.component';
     CommonModule,
     NgxDatatableModule,
     adminRoutingModule,
-    PipeModule
+    PipeModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
