@@ -2,14 +2,17 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import firebase from 'firebase/app'
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { UserData } from 'app/models/user';
 @Injectable()
 export class AuthService {
 
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
+  
+  userData : BehaviorSubject<UserData> = new BehaviorSubject<UserData>(undefined);
 
   private url = environment.apiUrl+'user/auth';
 
@@ -46,3 +49,4 @@ export class AuthService {
     return true;
   }
 }
+

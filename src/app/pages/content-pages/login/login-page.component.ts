@@ -1,8 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
+import { UserData } from 'app/models/user';
 import { AuthService } from 'app/shared/auth/auth.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -17,10 +19,11 @@ export class LoginPageComponent {
   isLoginFailed = false;
 
   loginForm = new FormGroup({
-    username: new FormControl('guest@apex.com', [Validators.required]),
-    password: new FormControl('Password', [Validators.required]),
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
     rememberMe: new FormControl(true)
   });
+
 
 
   constructor(private router: Router, private authService: AuthService,
@@ -49,9 +52,19 @@ export class LoginPageComponent {
       });
 
     this.authService.signinUser(this.loginForm.value.username, this.loginForm.value.password)
-      .subscribe((res) => {
-        this.spinner.hide();
-        this.router.navigate(['/dashboard/dashboard1']);
+      .subscribe((res : UserData) => {
+        if(res.message == 'success login'){
+            this.spinner.hide();
+            if(res.result){
+                this.authService.userData.next(res);
+                //set jwtToken in the localstorage
+                localStorage.setItem('jwtToken', res.result.accessToken);
+                if(this.authService.userData.value.result.currentUser.isAdmin)
+                this.router.navigate(['/admin']);
+                else
+                this.router.navigate(['/dashboard/home']);
+            }
+        }
       },
       (err) => {
         this.isLoginFailed = true;
