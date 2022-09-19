@@ -8,6 +8,8 @@ import {
   } from '@swimlane/ngx-datatable';
 import { AdduserComponent } from './modals/adduser/adduser.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AdminService } from './admin.service';
+import { User } from 'app/models/user';
 
 @Component({
   selector: 'app-admin',
@@ -19,10 +21,14 @@ export class AdminComponent implements OnInit {
     
   public rows = DatatableData;
   public ColumnMode = ColumnMode;
+  users : User[];
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,
+    private adminService : AdminService) { }
 
   ngOnInit(): void {
+    //get All users
+    this.getUsers();
   }
 
   
@@ -30,6 +36,12 @@ export class AdminComponent implements OnInit {
     openContent() {
         const modalRef = this.modalService.open(AdduserComponent);
         modalRef.componentInstance.name = 'World';
+    }
+
+    getUsers(){
+        this.adminService.getUsers().subscribe((res:any) => {
+            this.users = res.result
+        })
     }
 
 }

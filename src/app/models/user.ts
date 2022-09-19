@@ -19,3 +19,16 @@ export interface UserData {
         accessToken: string;
     }
 }
+export interface User {
+    _id: string;
+    name: string;
+    login: string;
+    passwordHash: string;
+    customer: string;
+    customer_id: string;
+    creating_date: string;
+    __v: number;
+    isAdmin: boolean;
+    hasAccessToAllDevices: boolean;
+    deviceArray: [];
+}
