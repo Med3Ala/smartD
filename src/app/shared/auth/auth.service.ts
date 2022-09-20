@@ -3,13 +3,18 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import firebase from 'firebase/app'
 import { Observable } from 'rxjs';
-
+import { environment } from 'environments/environment';
+import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class AuthService {
+
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
 
-  constructor(public _firebaseAuth: AngularFireAuth, public router: Router) {
+  private url = environment.apiUrl+'user/auth';
+
+  constructor(public _firebaseAuth: AngularFireAuth, public router: Router,
+    private http: HttpClient) {
     this.user = _firebaseAuth.authState;
     this.user.subscribe(
       (user) => {
@@ -29,16 +34,7 @@ export class AuthService {
   }
 
   signinUser(email: string, password: string) {
-    //your code for checking credentials and getting tokens for for signing in user
-    // return this._firebaseAuth.signInWithEmailAndPassword(email, password)
-
-    //uncomment above firebase auth code and remove this temp code
-    return new Promise(function(resolve, reject) {
-      setTimeout(function() {
-        resolve(true);
-      }, 1000);
-    });
-
+    return this.http.post(this.url, {login: email, password: password})
   }
 
   logout() {
