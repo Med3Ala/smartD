@@ -1,13 +1,16 @@
-<div class="row">
+<div class="row pt-3">
 
-  <div class="col-12">
+  <!-- <div class="col-12">
     <button class="btn btn-primary" (click)="addUser()">Add user</button>
     
     <button class="btn btn-primary" (click)="addDevice()">Add device</button>
 
-  </div>
+  </div> -->
   <div class="col-12">
     <div class="card">
+        <button class="cardAddBtn" (click)="addUser()">
+            +
+        </button>
       <div class="card-header">
         <h4 class="card-title">Users List</h4>
       </div>
@@ -75,6 +78,9 @@
   </div>
   <div class="col-12">
     <div class="card">
+        <button class="cardAddBtn" (click)="addDevice()">
+            +
+        </button>
       <div class="card-header">
         <h4 class="card-title">Device List</h4>
       </div>
