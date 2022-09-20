@@ -7,13 +7,17 @@ export const Full_ROUTES: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('../../dashboard/dashboard.module').then(m => m.DashboardModule)
-  }, 
+  },
   {
     path: 'home',
     component: DashboardComponent,
     data: {
       title: 'Home'
     }
+  },
+  {
+    path: 'facture',
+    loadChildren: () => import('../../facture/facture.module').then(m => m.FactureModule)
   },
   {
     path: 'calendar',
@@ -75,4 +79,5 @@ export const Full_ROUTES: Routes = [
     path: 'taskboard-ngrx',
     loadChildren: () => import('../../taskboard-ngrx/taskboard-ngrx.module').then(m => m.TaskboardNGRXModule)
   }
+
 ];
