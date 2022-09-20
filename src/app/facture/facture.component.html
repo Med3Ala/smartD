@@ -1,0 +1,54 @@
+<section id="basic-input">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Facture</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <fieldset class="form-group">
+                  <label for="basicInput">Tarif name</label>
+                  <input type="text" class="form-control" id="basicInput" placeholder="Tarif name">
+                </fieldset>
+              </div>
+              <div class="col-12">
+
+                <fieldset class="form-group"  *ngFor = "let tarif of inputs; let i = index ; ">
+                  <label for="helpInputTop">Tarif {{i}}</label> <br>
+                  <div class="row"  >
+                    <div class="col-5"   >
+                      <small class="text-muted"><i>Limit {{i}} : </i></small>
+                      <input name="Limits_{{i}}" type="number"   [(ngModel)]="tarif.Limit"  class="form-control" >
+                    </div>
+                    <div class="col-5">
+                      <small class="text-muted"><i>Prix {{i}}:</i></small>
+                      <input name="Prix_{{i}}" type="number" [(ngModel)]="tarif.Prix" class="form-control"  >
+                    </div>
+                    <div class="col-2 ">
+                     <button  type="button" *ngIf="i==0" class="btn btn-light  m-3" (click)="addfield()">+</button>
+                     <button  type="button" *ngIf="i!=0" class="btn btn-danger  m-3" (click)="removeInput()">-</button>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col-12">
+
+                <fieldset class="form-group">
+                  <label for="helperText">Tarif {{inputs.length}} </label><br>
+                  <small class="text-muted"><i>Prix {{inputs.length}}:</i></small>
+                  <input type="input-number" id="helperText" class="form-control" type="number">
+                </fieldset>
+              </div>
+            </div>
+            <div class="p-1">
+              <button type="button" class="btn btn-primary">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
