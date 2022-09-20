@@ -30,8 +30,6 @@ import { FullLayoutComponent } from "./layouts/full/full-layout.component";
 import { AuthService } from "./shared/auth/auth.service";
 import { AuthGuard } from "./shared/auth/auth-guard.service";
 import { WINDOW_PROVIDERS } from './shared/services/window.service';
-import { EnrgyBillsComponent } from './enrgy-bills/enrgy-bills.component';
-import { ModalEnergyComponent } from './modal-energy/modal-energy.component';
 
 var firebaseConfig = {
   apiKey: "YOUR_API_KEY", //YOUR_API_KEY
@@ -55,7 +53,7 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent, EnrgyBillsComponent, ModalEnergyComponent],
+  declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent],
   imports: [
     BrowserAnimationsModule,
     StoreModule.forRoot(fromApp.appReducer),
