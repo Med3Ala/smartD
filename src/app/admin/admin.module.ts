@@ -7,11 +7,12 @@ import { PipeModule } from 'app/shared/pipes/pipe.module';
 import { AdduserComponent } from './modals/adduser/adduser.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddDeviceComponent } from './modals/add-device/add-device.component';
 
 
 
 @NgModule({
-  declarations: [AdminComponent, AdduserComponent],
+  declarations: [AdminComponent, AdduserComponent, AddDeviceComponent],
   imports: [
     CommonModule,
     NgxDatatableModule,

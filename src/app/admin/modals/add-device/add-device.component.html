@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h4 class="modal-title">Hi there!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="col-12" [formGroup]="addDeviceForm" id="addDeviceForm" (ngSubmit)="addDevice()">
+        <div class="row">
+            <div class="col-6">
+                <fieldset class="form-group">
+                    <label for="basicInput">Name</label>
+                    <input type="text" formControlName="name" class="form-control" id="basicInput" placeholder="Enter email">
+                </fieldset>
+            </div>
+            <div class="col-6">
+                <fieldset class="form-group">
+                    <label for="basicInput">Type</label>
+                    <input type="text" formControlName="type" class="form-control" id="basicInput" placeholder="Enter email">
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <fieldset class="form-group">
+                    <label for="basicInput">Communication type</label>
+                    <input type="text" formControlName="communication_type" class="form-control" id="basicInput" placeholder="Enter email">
+                </fieldset>
+            </div>
+            <div class="col-6">
+                <fieldset class="form-group">
+                    <label for="basicInput">Has master station</label>
+                    <input type="text" formControlName="hasMaster" class="form-control" id="basicInput" placeholder="Enter email">
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <fieldset class="form-group">
+                    <label for="basicInput">Slave count</label>
+                    <input type="text" formControlName="slaveNbr" class="form-control" id="basicInput" placeholder="Enter email">
+                </fieldset>
+            </div>
+            <div class="col-6"></div>
+        </div>
+        
+    </form>
+  </div>
+  <div class="modal-footer">
+      <input type="submit" class="btn btn-success" value="Add" form="addDeviceForm"/>
+      <button type="button" class="btn btn-danger" (click)="activeModal.close('Close click')">Cancel</button>
+  </div>
+  

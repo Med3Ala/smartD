@@ -8,7 +8,8 @@ import { User } from '../models/user';
 })
 export class AdminService {
 
-    url = environment.apiUrl + 'user/';
+    usersUrl = environment.apiUrl + 'user/';
+    deviceUrl = environment.apiUrl + 'device/';
     users : User[];
 
   constructor(private http : HttpClient,
@@ -21,10 +22,25 @@ export class AdminService {
             name : data.name,
             customer : this.authService.userData.value.result.currentUser.customer
         }
-        return this.http.post(this.url+'add', params);
+        return this.http.post(this.usersUrl+'add', params);
     }
 
     getUsers(){
-        return this.http.post(this.url+'customer',{"skip":0,"limit":100,"customer":this.authService.userData.value.result.currentUser.customer});
+        return this.http.post(this.usersUrl+'customer',{"skip":0,"limit":100,"customer":this.authService.userData.value.result.currentUser.customer});
+    }
+
+    getDevices(){
+        return this.http.post(this.deviceUrl+'list',{"skip":0,"limit":100});
+    }
+
+    addDevice(data){
+        let params = {
+            name: data.name,
+            type: data.type,
+            communication_type : data.communication_type,
+            hasMaster : data.hasMaster,
+            slaveNbr : data.slaveNbr,
+        }
+        return this.http.post(this.deviceUrl+'add', params);
     }
 }
