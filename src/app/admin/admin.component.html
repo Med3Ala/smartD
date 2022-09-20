@@ -91,6 +91,39 @@
           <ngx-datatable [rows]="devices" [rowHeight]="50" class="bootstrap core-bootstrap" [limit]="10"
             [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true">
             <ngx-datatable-column name="Name" prop="name" [width]="70"></ngx-datatable-column>
+            <ngx-datatable-column name="Customer" prop="customer" [width]="70"></ngx-datatable-column>
+            <ngx-datatable-column name="Type" prop="type" [width]="70">
+                <!-- there are 2 types MT88 & MT61GP -->
+                <ng-template let-type="value" ngx-datatable-cell-template>
+                    <div class="badge badge-pill" [ngClass]="{'bg-success': type == 'MT88', 'bg-primary':type == 'MT61GP'}">
+                        {{ type }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Communication type" prop="communication_type" [width]="70"></ngx-datatable-column>
+            <ngx-datatable-column name="Has Master" prop="hasMaster" [width]="70"></ngx-datatable-column>
+            <ngx-datatable-column name="Slaves" prop="slaveNbr" [width]="70">
+                <ng-template let-slaves="value" ngx-datatable-cell-template>
+                    <div class="badge badge-pill" [ngClass]="{'bg-success': slaves == 1, 'bg-primary':(slaves > 2 && slaves < 5), 'bg-danger':slaves > 5}">
+                        {{ slaves }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Creator id" prop="creator_id" [width]="70"></ngx-datatable-column>
+            <ngx-datatable-column name="Creationg date" prop="creating_date" [width]="70">
+                <ng-template let-date="value" ngx-datatable-cell-template>
+                    <div class="badge badge-pill" [ngClass]="{'bg-light-primary': date == true, 'bg-light-success':date == false}">
+                        {{ date | date:'dd/MM/yyyy' }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Updating date" prop="updating_date" [width]="70">
+                <ng-template let-date="value" ngx-datatable-cell-template>
+                    <div class="badge badge-pill" [ngClass]="{'bg-light-primary': date == true, 'bg-light-success':date == false}">
+                        {{ date | date:'dd/MM/yyyy' }}
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
             <ngx-datatable-column name="Actions" [width]="70">
               <ng-template ngx-datatable-cell-template>
                 <i class="ft-more-vertical text-primary cursor-pointer mr-2"></i>
