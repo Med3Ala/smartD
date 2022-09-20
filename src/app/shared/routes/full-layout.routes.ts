@@ -12,6 +12,10 @@ export const Full_ROUTES: Routes = [
     loadChildren: () => import('../../admin/admin.module').then(m => m.AdminModule)
   },
   {
+    path: 'facture',
+    loadChildren: () => import('../../facture/facture.module').then(m => m.FactureModule)
+  },
+  {
     path: 'calendar',
     loadChildren: () => import('../../calendar/calendar.module').then(m => m.CalendarsModule)
   },
@@ -71,4 +75,5 @@ export const Full_ROUTES: Routes = [
     path: 'taskboard-ngrx',
     loadChildren: () => import('../../taskboard-ngrx/taskboard-ngrx.module').then(m => m.TaskboardNGRXModule)
   }
+
 ];

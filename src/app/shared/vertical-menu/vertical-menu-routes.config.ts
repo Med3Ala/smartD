@@ -2,7 +2,9 @@ import { RouteInfo } from './vertical-menu.metadata';
 
 //Sidebar menu Routes and data
 export const ROUTES: RouteInfo[] = [
-    
+
+  { path: '/home', title: 'Home', icon: 'ft-home', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+  { path: '/facture', title: 'Facture', icon: 'ft-home', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
   { path: '/dashboard/home', title: 'Home', icon: 'ft-home', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
   {
     path: '', title: 'Dashboard', icon: 'ft-home', class: 'has-sub', badge: '2', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false, submenu: [
