@@ -1,0 +1,82 @@
+<section id="basic-input">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Facture</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <!-- <form [formGroup]="tarifInputsArray"> -->
+              <form [formGroup]="form1" (ngSubmit)="onSubmit()">
+            <div class="row">
+
+              <div class="col-12">
+                <fieldset class="form-group" >
+                  <label for="basicInput">Tarif name</label>
+                  <input type="text" class="form-control" id="basicInput" placeholder="Tarif name" formControlName="Tarifname">
+                </fieldset>
+              </div>
+
+
+
+              <div>
+                <button type="button" mat-raised-button color="accent" (click)="addfield()">add</button>
+                <div *ngFor="let u of TarifArray.controls; index as i">
+
+                  <span> {{ i + 1 }}</span> &nbsp; &nbsp;
+                  <app-input [index]="i+1" [inputFormGroup]="$any(u)"></app-input>
+                  <button mat-raised-button color="accent" (click)="removeInput(i)"><mat-icon>delete</mat-icon></button>
+
+              </div>
+              </div>
+
+
+
+
+
+              <!-- <div class="col-12">
+
+                <fieldset class="form-group"  *ngFor = "let tarif of tarifInputsArray.controls ; let i = index ; ">
+                  <label for="helpInputTop">Tarif {{i}}</label> <br>
+                  <div class="row"  >
+                    <div class="col-5"   >
+                      <small class="text-muted"><i>Limit {{i}} : </i></small>
+                      <input name="Limit" type="number"  [formControl]="tarif" class="form-control">
+                      <input name="Limit{{i}}" type="number"   formControlName="Limit{{i}}"  class="form-control" >
+                    </div>
+                    <div class="col-5">
+                      <small class="text-muted"><i>Prix {{i}}:</i></small>
+                      <input name="Prix{{i}}" type="number" formControlName="Prix{{i}}" class="form-control"  >
+                    </div>
+                    <div class="col-2 ">
+                     <button  type="button" *ngIf="i==0" class="btn btn-light  m-3" (click)="addfield()">+</button>
+                     <button  type="button" *ngIf="i!=0" class="btn btn-danger  m-3" (click)="removeInput()">-</button>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col-12">
+
+                <fieldset class="form-group">
+                  <label for="helperText">Tarif {{tarifInputs.length}} </label><br>
+                  <small class="text-muted"><i>Prix {{tarifInputs.length}}:</i></small>
+                  <input type="input-number" id="helperText" class="form-control" type="number">
+                </fieldset>
+              </div> -->
+            </div>
+            <div class="p-1">
+              <!-- <button type="button" class="btn btn-primary" (click)="saveTarifs()">Add</button> -->
+              <button type="submit" mat-raised-button color="accent">Submit</button>
+            </div>
+            <!-- </form> -->
+          </form>
+          </div>
+
+       </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
