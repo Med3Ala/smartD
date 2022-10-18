@@ -2,6 +2,15 @@ import { Component, ViewEncapsulation, Input, OnInit, ViewChild } from '@angular
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddTarifComponent } from './add-tarif/add-tarif.component';
 import { map } from 'rxjs/operators';
+import { DatatableData } from './data/datatables.data';
+import {
+  ColumnMode,
+  DatatableComponent,
+  SelectionType
+} from '@swimlane/ngx-datatable'
+import { HttpClient } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-facture',
@@ -13,6 +22,18 @@ import { map } from 'rxjs/operators';
 export class FactureComponent  implements OnInit {
   closeResult: string;
   public contentHeader: object;
+
+  public Array = [];
+ public rows = DatatableData;
+
+  public columns = [
+    { name: 'Name', prop: 'full_name' },
+    { name: 'Email', prop: 'email' },
+    { name: 'Age', prop: 'age' },
+    { name: 'Salary', prop: 'salary' }
+  ];
+
+
 
   // public columns = inputs ;
 
@@ -54,8 +75,42 @@ openContent() {
 }
 
   ngOnInit(): void {
+     this.rows = JSON.parse((localStorage.getItem("Tarifs") as any )).TarifArray
+      this.Array = this.rows
+    //  return Array=[...this.rows]
+    //  return  Array = this.rows = JSON.parse((localStorage.getItem("Tarifs") as any )).TarifArray
 
   }
+
+  public multiPurposeRows = DatatableData;
+  public ColumnMode = ColumnMode;
+
+  private tempData = [];
+  private multiPurposeTemp = [];
+
+  // @param event
+  // @param cell
+  // @param rowIndex
+
+  // inlineEditingUpdate(event, cell, rowIndex) {
+  //   this.editing[rowIndex + '-' + cell] = false;
+  //   this.rows[rowIndex][cell] = event.target.value;
+  //   this.rows = [...this.rows];
+  // }
+
+  // @param code
+  // filterUpdate(event) {
+  //   const val = event.target.value.toLowerCase();
+
+  //   const temp = this.tempData.filter(function (d) {
+  //     return d.full_name.toLowerCase().indexOf(val) !== -1 || !val;
+  //   });
+
+
+    // this.rows = temp;
+    // this.table.offset = 0;
+
+
 }
 
 

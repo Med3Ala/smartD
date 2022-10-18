@@ -59,11 +59,11 @@ export class DataTablesComponent implements OnInit {
    * @param cell
    * @param rowIndex
    */
-  inlineEditingUpdate(event, cell, rowIndex) {
-    this.editing[rowIndex + '-' + cell] = false;
-    this.rows[rowIndex][cell] = event.target.value;
-    this.rows = [...this.rows];
-  }
+  // inlineEditingUpdate(event, cell, rowIndex) {
+  //   this.editing[rowIndex + '-' + cell] = false;
+  //   this.rows[rowIndex][cell] = event.target.value;
+  //   this.rows = [...this.rows];
+  // }
 
   /**
    * filterUpdate
@@ -131,19 +131,19 @@ export class DataTablesComponent implements OnInit {
    *
    * @param event
    */
-  MultiPurposeFilterUpdate(event) {
-    const val = event.target.value.toLowerCase();
+  // MultiPurposeFilterUpdate(event) {
+  //   const val = event.target.value.toLowerCase();
 
-    // filter our data
-    const temp = this.multiPurposeTemp.filter(function (d) {
-      return d.full_name.toLowerCase().indexOf(val) !== -1 || !val;
-    });
+  //   // filter our data
+  //   const temp = this.multiPurposeTemp.filter(function (d) {
+  //     return d.full_name.toLowerCase().indexOf(val) !== -1 || !val;
+  //   });
 
-    // update the rows
-    this.multiPurposeRows = temp;
-    // Whenever the filter changes, always go back to the first page
-    this.table.offset = 0;
-  }
+  //   // update the rows
+  //   this.multiPurposeRows = temp;
+  //   // Whenever the filter changes, always go back to the first page
+  //   this.table.offset = 0;
+  // }
 
   /**
    * Constructor

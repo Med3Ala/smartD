@@ -39,6 +39,7 @@ export class AddTarifComponent implements OnInit {
   }
 
   onSubmit() {
+    localStorage.setItem("Tarifs", JSON.stringify(this.form1.value.TarifArray))
     console.log('form submitted');
     console.log(this.form1.value);
 

@@ -5,7 +5,7 @@ import { FactureRoutingModule } from './facture-routing.module';
 import { AddTarifComponent } from './add-tarif/add-tarif.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from './input/input.component'
-
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -14,7 +14,8 @@ import { InputComponent } from './input/input.component'
     CommonModule,
     FactureRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxDatatableModule
 
   ]
   // entryComponents:[
