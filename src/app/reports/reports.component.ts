@@ -49,16 +49,6 @@ export class ReportsComponent implements OnInit {
 
   }
 
-// volpData(){
-//   for (let i=0; i<this.data.length ; i++){
-//     this.volP.push((this.data[i]).reduce((a,b)=>
-//     a+parseFloat(b)
-//     ,0
-//     )/this.data[i].length);
-//   }
-//   console.log(this.volP);
-
-// }
 
 volPhases(){
   for (let i=0; i<this.data.length ; i++){
