@@ -4,12 +4,13 @@ import { ReportsComponent } from './reports.component';
 import { ReportsRoutingModule } from './reports-routing.module';
 import { ChartsModule } from 'ng2-charts';
 import { ChartistModule } from 'ng-chartist';
+import { GraphBlocComponent } from './graph-bloc/graph-bloc.component';
 
 
 
 
 @NgModule({
-  declarations: [ReportsComponent,
+  declarations: [ReportsComponent, GraphBlocComponent,
 
   ],
   imports: [
