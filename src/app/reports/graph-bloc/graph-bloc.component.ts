@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { energyData } from 'app/energyData';
+import { Observable } from 'rxjs';
 import * as chartsData from '../../../app/shared/data/chartjs';
+import { HistoryService } from '../history.service';
+import {HistoryOfDevice} from './HistoryOfDevice.interface';
 
 @Component({
   selector: 'app-graph-bloc',
@@ -11,20 +14,30 @@ export class GraphBlocComponent implements OnInit {
 
   public data : any[] = []
   public date : any[] = []
-  public volP : any[] = []
+  // public volP : any[] = []
   public VolPhase1 :any[] = []
   public VolPhase2 :any[] = []
   public VolPhase3 :any[] = []
   public barData :any[] = []
 
-  constructor() { }
+
+  public VolP : any[] = []
+  // Vol_P: any = []
+  Vol_P:HistoryOfDevice[]=[]
+
+  private getHistory$!: Observable<HistoryOfDevice[]>
+
+  constructor(
+    private historyService:HistoryService
+  ) { }
 
 
 
   ngOnInit(): void {
-    this.energyDataArray()
-    this.DateDataArray()
-    this.volPhases()
+
+    this.getHistory()
+    // this.energyDataArray()
+    // this.DateDataArray()
 
 
   this.barData = [
@@ -33,6 +46,25 @@ export class GraphBlocComponent implements OnInit {
    { data : this.VolPhase3 , label:'Phase 3'}
   ];
 
+  }
+
+  // getHistory(){
+  //   this.historyService.getHistory('865334041071942', 100 ,0).subscribe(response=>{
+  //     console.log(response)
+  //   })
+  // }
+
+
+  getHistory(){
+    this.historyService.getAllHistory('865334041071942', 10, 0, 'phase_voltage').subscribe(data => {
+      data.forEach((elem, index)=>{
+        this.data.push(elem.value)
+        this.date.push(
+          elem.date.toLocaleDateString()
+        )
+      })
+      this.volPhases()
+    })
   }
 
 
