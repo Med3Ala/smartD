@@ -2,9 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, skip } from 'rxjs/operators';
 import { HistoryOfDevice } from './graph-bloc/HistoryOfDevice.interface';
 import { DataEntity, result, Statistics } from 'app/models/history';
+import { id } from '@swimlane/ngx-datatable';
+import { getValueInRange } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { value } from 'app/shared/data/dropdowns';
 
 
 @Injectable({
@@ -41,7 +44,33 @@ export class HistoryService {
       })
       )
     }
-  }
+
+
+
+    getAllHistoryByInterval(id, start_date, end_date , param ):Observable<result[]>{
+      return this.http.post<any>(`${this.server}statistics/getVariableHistoryOfDeviceByInterval`,{
+        device_serial_number : id,
+        start_date : start_date,
+        end_date : end_date
+      })
+      .pipe(
+        map((value:Statistics)=>value.data),
+        map(value=>{
+          return value.map((val:DataEntity)=> {return {
+            value : val[param],
+            date : new Date(val.creating_date)
+          }})
+        })
+        )
+     }
+
+
+
+   }
+
+
+
+
 
 //     export interface Statistics {
 //       code: string;

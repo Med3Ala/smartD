@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { energyData } from 'app/energyData';
+import { dateBeforeMins } from 'app/shared/utils/dates';
 import { Observable } from 'rxjs';
 import * as chartsData from '../../../app/shared/data/chartjs';
 import { HistoryService } from '../history.service';
@@ -35,7 +36,8 @@ export class GraphBlocComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getHistory()
+    //this.getHistory()
+    this.getHistoryByInterval()
     // this.energyDataArray()
     // this.DateDataArray()
 
@@ -57,6 +59,22 @@ export class GraphBlocComponent implements OnInit {
 
   getHistory(){
     this.historyService.getAllHistory('865334041071942', 10, 0, 'phase_voltage').subscribe(data => {
+      data.forEach((elem, index)=>{
+        this.data.push(elem.value)
+        this.date.push(
+          elem.date.toLocaleDateString()
+        )
+      })
+      this.volPhases()
+    })
+  }
+
+
+  getHistoryByInterval(){
+    this.historyService.getAllHistoryByInterval('865334041071942',
+    dateBeforeMins(new Date(), 60*24*14),
+    new Date(),
+    'phase_voltage').subscribe(data=>{
       data.forEach((elem, index)=>{
         this.data.push(elem.value)
         this.date.push(
