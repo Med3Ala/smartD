@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
-import { Observable } from 'rxjs';
-import { map, skip } from 'rxjs/operators';
+import { Observable, forkJoin } from 'rxjs';
+import { map, skip, take } from 'rxjs/operators';
 import { HistoryOfDevice } from './graph-bloc/HistoryOfDevice.interface';
-import { DataEntity, result, Statistics } from 'app/models/history';
-import { id } from '@swimlane/ngx-datatable';
-import { getValueInRange } from '@ng-bootstrap/ng-bootstrap/util/util';
-import { value } from 'app/shared/data/dropdowns';
+import {  result, Statistics, VariableData, EnergyData } from 'app/models/history';
+// import { id } from '@swimlane/ngx-datatable';
+// import { getValueInRange } from '@ng-bootstrap/ng-bootstrap/util/util';
+// import { value } from 'app/shared/data/dropdowns';
+
 
 
 @Injectable({
@@ -37,7 +38,7 @@ export class HistoryService {
     }).pipe(
       map((value:Statistics)=>value.data),
       map(value=>{
-        return value.map((val:DataEntity)=> {return {
+        return value.map((val:VariableData)=> {return {
           value : val[param],
           date : new Date(val.creating_date)
         }})
@@ -56,7 +57,7 @@ export class HistoryService {
       .pipe(
         map((value:Statistics)=>value.data),
         map(value=>{
-          return value.map((val:DataEntity)=> {return {
+          return value.map((val:VariableData)=> {return {
             value : val[param],
             date : new Date(val.creating_date)
           }})
@@ -65,8 +66,50 @@ export class HistoryService {
      }
 
 
+     getAllEnergyByInterval(id,start_date,end_date, param):Observable<result[]>{
+      return this.http.post<any>(`${this.server}statistics/getEnergyHistoryOfDeviceByInterval`,{
+        device_serial_number: id,
+        start_date:start_date ,
+        end_date: end_date
+      })
+      .pipe(
+        map((value:Statistics) => value.data),
+        map(value=>{
+          return value.map((val:EnergyData)=>{return{
+          value : val[param],
+          date : new Date(val.creating_date)
+        }})
+      })
+      )
+   }
+
+   getboth(id,start_date, end_date){
+
+
+
+   forkJoin([
+    this.http.post<any>(`${this.server}statistics/getEnergyHistoryOfDeviceByInterval`,{
+      device_serial_number : id,
+      start_date : start_date,
+      end_date : end_date
+    }),
+    this.http.post<any>(`${this.server}statistics/getVariableHistoryOfDeviceByInterval`,{
+      device_serial_number : id,
+      start_date : start_date,
+      end_date : end_date
+    })
+
+   ].concat()) .subscribe(res=>console.log(res))
+
+
 
    }
+
+
+
+   }
+
+
 
 
 

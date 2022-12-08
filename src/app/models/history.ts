@@ -2,9 +2,9 @@ export interface Statistics {
   code: string;
   message: string;
   success: boolean;
-  data?: (DataEntity)[] | null;
+  data?: VariableData[] | EnergyData[] | any;
 }
-export interface DataEntity {
+export interface VariableData {
   _id: string;
   device_serial_number: string;
   creating_date: string;
@@ -26,4 +26,25 @@ export interface DataEntity {
 export interface result {
   value : any;
   date : Date
+}
+
+
+
+
+
+
+export interface EnergyData {
+  _id: string;
+  device_serial_number: string;
+  creating_date: string;
+  devType: string;
+  active_energy?: (number)[] | null;
+  active_consumption?: (number)[] | null;
+  active_release_energy?: (number)[] | null;
+  reactive_energy?: (number)[] | null;
+  reactive_release_energy?: (number)[] | null;
+  reactive_consumption?: (number)[] | null;
+  storage_date: string;
+  __v: number;
+
 }

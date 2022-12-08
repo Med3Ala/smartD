@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { energyData } from 'app/energyData';
 import { dateBeforeMins } from 'app/shared/utils/dates';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import * as chartsData from '../../../app/shared/data/chartjs';
 import { HistoryService } from '../history.service';
 import {HistoryOfDevice} from './HistoryOfDevice.interface';
+
 
 @Component({
   selector: 'app-graph-bloc',
@@ -38,6 +39,11 @@ export class GraphBlocComponent implements OnInit {
 
     //this.getHistory()
     this.getHistoryByInterval()
+
+    this.historyService.getboth('865334041071942',
+    dateBeforeMins(new Date(), 60*24*20),
+    new Date())
+    // this.getEnergyByInterval()
     // this.energyDataArray()
     // this.DateDataArray()
 
@@ -58,6 +64,9 @@ export class GraphBlocComponent implements OnInit {
 
 
   getHistory(){
+
+
+
     this.historyService.getAllHistory('865334041071942', 10, 0, 'phase_voltage').subscribe(data => {
       data.forEach((elem, index)=>{
         this.data.push(elem.value)
@@ -72,7 +81,7 @@ export class GraphBlocComponent implements OnInit {
 
   getHistoryByInterval(){
     this.historyService.getAllHistoryByInterval('865334041071942',
-    dateBeforeMins(new Date(), 60*24*14),
+    dateBeforeMins(new Date(), 60*24*20),
     new Date(),
     'phase_voltage').subscribe(data=>{
       data.forEach((elem, index)=>{
@@ -84,6 +93,33 @@ export class GraphBlocComponent implements OnInit {
       this.volPhases()
     })
   }
+
+
+
+  // getStatisticsByInterval(){
+  //   this.historyService.getAllHistoryByInterval('865334041071942',
+  //   dateBeforeMins(new Date(), 60*24*14),
+  //   new Date(),
+  //   'phase_voltage').pipe(
+  //     forkJoin(value => this )
+  //   )
+
+  // }
+
+
+
+  // getEnergyByInterval(){
+  //   this.historyService.getAllEnergyByInterval('865334041071942',
+  //    dateBeforeMins(new Date(), 60*24*14),
+  //   new Date(),
+  //   'active_energy').subscribe(res => console.log(res))
+  // }
+
+
+
+
+
+
 
 
   energyDataArray(){
